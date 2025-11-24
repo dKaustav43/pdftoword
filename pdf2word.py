@@ -23,11 +23,12 @@ def pdftoword(input_pdf_path:str, output_word_path:str, start:int, end:int):
     
     doc = Document()
 
-    for i, page in enumerate(pdf.pages[start-1:end]):
-        text = page.extract_text()
-        if text:
-            doc.add_paragraph(f"--- Page {i+1} ---")
-            doc.add_paragraph(text)
+    with pdfplumber.open(input_path) as pdf:
+        for i, page in enumerate(pdf.pages[start-1:end]):
+            text = page.extract_text()
+            if text:
+                doc.add_paragraph(f"--- Page {i+1} ---")
+                doc.add_paragraph(text)
 
     doc.save(output_word_path)
 
