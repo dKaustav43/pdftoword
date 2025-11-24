@@ -44,7 +44,7 @@ def main():
 
     result = pdftoword(input_pdf_path,output_word_path,start,end)
 
-    print(f"Created{result}")
+    print(f"Created {result}")
 
 if __name__ == "__main__":
     main()
