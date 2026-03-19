@@ -1,7 +1,7 @@
 import fitz # type: ignore
 from pathlib import Path
 
-def pdf_to_text(start, end, input_pdf_path:str = "data/pdfs/2025-HVM-Catapult-annual-report.pdf", output_text_path:str = "data/output_txts/exp3.txt"):
+def pdf_to_text(start, end, input_pdf_path:str = "data/pdfs/2025-HVM-Catapult-annual-report.pdf", output_text_path:str = "data/output_txts/exp4.txt"):
     doc = fitz.open(input_pdf_path)
     total = doc.page_count
     if not (1 <= start <= end <= total):
@@ -12,8 +12,7 @@ def pdf_to_text(start, end, input_pdf_path:str = "data/pdfs/2025-HVM-Catapult-an
         for i in range(start - 1, end):
             text = doc[i].get_text("text")
             if text.strip():
-                f.write(f"--- Page {i+1} ---\n{text}\n\n")
-
+                f.write(f"{text}\n\n")
     doc.close()
     return output_text_path
 
